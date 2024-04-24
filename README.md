@@ -22,9 +22,20 @@ The survey dataset for the entire year is stored in twelve separate Microsoft Ex
 | GENDER                  | sex                    | "Gender (1=M; 2=F)"                                                                                          |
 | WTYPE                   | ward_type              | "Ward type (1=A1; 2=B1; 3=B2; 4=C)"                                                                         |
 
-         
-        
 
+### Software Platform
+
+This project will utilise:
+
+- Python Jupyter Notebook version 6.5.4
+  
+- RStudio platform version 2023.06.1, Build 524
+  
+- MySQL version 8.1.0
+  
+- Tableplus version 1
+        
+Uploading Excel Documents to MySQL with Python
           
     
 
