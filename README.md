@@ -10,7 +10,7 @@ The survey dataset for the entire year is stored in twelve separate Microsoft Ex
       
 ### Data Dictionary
 
-| Excel Column Name       | Field Name             | Description of the question in the survey associated with the variable                                         |
+| Column Name       | Field Name             | Description of question                                   |
 |-------------------------|------------------------|--------------------------------------------------------------------------------------------------------------|
 | X1                      | respectful             | "How courteous and respectful the doctors were (1=Very Poor; 2=Poor; 3=Satisfactory; 4=Good; 5=Excellent; 99=NA)" |
 | X2                      | seems_competent        | "How well the doctors displayed professional knowledge and skills (1=Very Poor; 2=Poor; 3=Satisfactory; 4=Good; 5=Excellent; 99=NA)" |
