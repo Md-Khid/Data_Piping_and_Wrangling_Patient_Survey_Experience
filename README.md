@@ -6,7 +6,7 @@ This project aims to demonstrate the utilisation of Python, SQL, and R for profi
 ## Dataset Information
 
 ### Data Variables
-The survey dataset for the entire year is stored in twelve separate Microsoft Excel documents, one for each calendar month. The significant part of the survey focuses on the experiences of warded patients with their doctors, including aspects such as respect, competency, empathy, and listening skills.
+The survey dataset for the entire year is stored in twelve separate Microsoft Excel documents, one for each calendar month. The significant part of the survey focuses on the experiences of warded patients with their doctors, including aspects such as respect, competency, empathy and listening skills.
       
 ### Data Dictionary
 
