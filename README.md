@@ -31,11 +31,12 @@ This project will utilise:
   
 - RStudio platform version 2023.06.1, Build 524
   
-- MySQL version 8.1.0
+- MySQL Server version 8.1.0
   
 - Tableplus version 1
         
-Uploading Excel Documents to MySQL with Python
+### Uploading Excel Documents to MySQL with Python
+
           
     
 
