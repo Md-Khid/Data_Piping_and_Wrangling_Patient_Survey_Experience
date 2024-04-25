@@ -67,5 +67,20 @@ db_config = {
     "database": "anl503-eca"
 }
 ```
+Next, an "SQLAlchemy" database engine is created using the provided configuration information. The "create_engine" function combines all these elements into a connection string and employs it to establish an SQLAlchemy engine. This engine can be utilised to execute SQL queries and interact with the specified MySQL database using the provided connection details.
+
+```
+engine = create_engine(f"mysql+mysqlconnector://{db_config['user']}:{db_config['password']}@{db_config['host']}:{db_config['port']}/{db_config['database']}")
+```
+It the speficifies the location of the folder where the Excel files to be processed by the program are stored.
+
+```
+folder_path = 'raw/'
+```
+It then defines a list named "keywords" that includes specific words or terms of interest. This list enables the identification and matching of these keywords within the code later. It accommodates variations in capitalisation, ensuring that the code matches these keywords regardless of their case.
+```
+keywords = ["inpatient", "warded", "ip", "inp", "in"]
+```
+
 
 
