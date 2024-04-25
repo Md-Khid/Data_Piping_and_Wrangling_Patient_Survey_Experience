@@ -120,7 +120,8 @@ for filename in os.listdir(folder_path):
                         table_name = f"in{month_order.index(month_name) + 1:02d}"
                         
 # The data from the sheet is written to a MySQL database table using the "to_sql" method, and any existing table with the same name is replaced.
-                        data_frame.to_sql(table_name, con=engine, if_exists="replace", index=False)        
+                        data_frame.to_sql(table_name, con=engine, if_exists="replace", index=False)
+       
 # A message is generated to confirm the successful upload of information from the current file to the corresponding table.
                         print(f"Data from '{filename}' has been successfully uploaded to the '{table_name}' table.")
 
