@@ -122,10 +122,9 @@ print("All data frames have been uploaded to the MySQL database as tables in ord
 ```
 After executing these Python codes, the following outputs will be obtained from the Python environment and the MySQL database "survey". 
 
-Python
+
 ![Screenshot 2024-04-25 at 10-54-25 ANL503-ECA - Jupyter Notebook](https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/31189075-2ea7-4b64-b1fd-d03cce28330b)
 
-SQL
 <img width="960" alt="1" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/91ccf0f2-cd9d-479c-831c-fe12feaa9ce2">
 
 
