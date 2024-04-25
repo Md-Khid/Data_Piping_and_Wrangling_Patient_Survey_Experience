@@ -240,6 +240,6 @@ str(data.frame)
 ```
 <img width="529" alt="4" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/22d7a2c1-7d71-4446-a044-e9aa1d42cec9">
 
-It is noted that all the variables in the data are integers. Therefore, the project will proceed to create a Simple Linear Regression model based on the doc_survey data.
+It is noted that all the variables in the data are integers. Therefore, the project will proceed to create a Simple Linear Regression model based on the doc_survey data in R.
 
 
