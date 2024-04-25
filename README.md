@@ -51,11 +51,15 @@ To construct a data flow, the project will use a Python program to extract data 
 | Sep.xlsx       | in09             |
 | Oct.xlsx       | in10             |
 
-1. The code begins by importing necessary libraries and the "create_engine" function from the "sqlalchemy" module. Initially, it imports "pandas" and assigns it the alias "pd" for data manipulation. Subsequently, the complete "sqlalchemy" library, primarily used for managing relational databases, is imported. The "os" library follows, which facilitates file and directory operations. Lastly, "re" is imported from Python's standard library, enabling string manipulation through pattern matching. Lastly, "create_engine" is imported from "sqlalchemy" to create a database engine for connecting to relational databases.
+1. The code begins by importing necessary libraries and the "create_engine" function from the "sqlalchemy" module.
 
 ```
-import pandas as pd, sqlalchemy, os, re
-from sqlalchemy import create_engine
+# Import necessary libraries
+import pandas as pd  # Library for data manipulation and analysis
+import sqlalchemy  # Library for interacting with SQL databases
+import os  # Library for interacting with the operating system
+import re  # Library for regular expressions
+from sqlalchemy import create_engine  # Function to create a connection to a SQL database
 ```
 2. A Python dictionary named "db_config" is defined to store the configuration details required for connecting to a database. This dictionary serves the purpose of defining a configuration that can be utilised later in the code to establish a connection to the designated database.     
 ```
