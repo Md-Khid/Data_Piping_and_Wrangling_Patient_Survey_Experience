@@ -139,14 +139,11 @@ The project will begin constructing a "doc survey" table, consolidating all reco
 The project will begin constructing a "doc survey" table, consolidating all records from each of the twelve tables. Following this, it will proceed to convert all missing or non-valid values, such as '99', to NULL. To create the new table named "doc_survey", the project will use a stored procedure within the MySQL query. This procedure will include loop functions for executing iterative tasks and conditional logic. Acting as a container for the entire process, it will involve actions like combining data from multiple tables, renaming columns, altering data types, and updating values. Upon invocation, this procedure will execute all tasks as a unified operation.
 
 ```
--- Procedure Creation: The code initiates by setting the delimiter to "$$" to define the stored procedure.
--- Subsequently, it creates the procedure named "UnionAllTablesAndModify" employing the "CREATE PROCEDURE" statement.
 DELIMITER $$
 CREATE PROCEDURE UnionAllTablesAndModify()
 BEGIN
 
-  -- Variable Declaration: Within the procedure, an integer variable named "i" is declared and initialised with the value 1.
-  -- Additionally, another variable "@sql_text" is declared to store SQL statements in the form of a string.
+  -- Variable Declaration: Within the procedure, an integer variable named "i" is declared and initialised with the value 1. Additionally, another variable "@sql_text" is declared to store SQL statements in the form of a string.
   DECLARE i INT DEFAULT 1;
   SET @sql_text = '';
 
@@ -170,8 +167,7 @@ BEGIN
   DEALLOCATE PREPARE stmt;
 
  -- Table Column Modification: The code subsequently configures the "@sql_text" variable with an SQL query that alters the structure of the "doc_survey" table.
- -- This involves changing the data type of several columns to "TINYINT" and adding comments to elucidate the significance of values within these columns.
- -- For this purpose, the "ALTER TABLE" statement is utilised.
+ -- This involves changing the data type of several columns to "TINYINT" and adding comments to elucidate the significance of values within these columns. For this purpose, the "ALTER TABLE" statement is utilised.
 -- Preparation and Execution of Column Modification Query: Similar to the previous step, the SQL statement for modifying the table columns is prepared and executed.
 -- In this query, the columns are renamed in accordance with Table 1 in the assignment, and the data type is changed to "TINYINT" for enhanced storage efficiency (for values range from 1 to 99). Comments have been added for future reference, aiding others in comprehending the data.
   SET @sql_text = '
@@ -212,3 +208,9 @@ DELIMITER ;
 -- Call the Procedure
 CALL UnionAllTablesAndModify();
 ```
+Following the execution of the MySQL query, the "doc_survey" table comprising 17,708 rows and the stored procedure function "UnionAllTablesAndModify" will be created in the MySQL survey database.
+
+<img width="960" alt="2" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/cc0756a6-1e19-40e5-92de-e24b6b44c54b">
+
+
+
