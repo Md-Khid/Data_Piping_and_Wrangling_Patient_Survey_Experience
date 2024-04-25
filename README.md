@@ -35,7 +35,7 @@ This project will utilise:
   
 - Tableplus version 1
         
-### Uploading Excel Documents to MySQL with Python
+## Uploading Excel Documents to MySQL with Python
 To construct a data flow, the project will use a Python program to extract data from the twelve Excel documents and subsequently transfer it to the MySQL database, following the specified naming convention:
 
 | Excel filename | MySQL table name |
