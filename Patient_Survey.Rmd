@@ -1,0 +1,138 @@
+```{r}
+
+# Set the working directory 
+setwd(" ")
+
+# Load the RMySQL package. This code checks if the RMySQL package is available and, if not installs and loads it.
+if (!require(RMySQL)) {
+  install.packages("RMySQL", dependencies = TRUE)
+  library(RMySQL)
+}
+
+# Establish a database connection. This code initiates the process of establishing a connection to MySQl database.
+con <- dbConnect(MySQL(), dbname = "survey", user = "root", password = "")
+
+# Execute a query to fetch data from the table. This code signifies the execution of a database query to retrieve data from a specific table.
+suppressWarnings(data.frame <- dbGetQuery(con, "SELECT * FROM doc_survey"))
+
+# Close the database connection. This code signals the intention to close the connection to the database.
+dbDisconnect(con)
+```
+
+```{r}
+# Check the structure of the retrieved data table. This code is used to examine the structure of the data table that has been retrieved.
+str(data.frame)
+```
+
+```{r}
+# A linear regression model (model) is created using the "lm" function, which regresses the "overall_sat" variable against all other columns in the dataset (data.frame).
+# The model's purpose is to elucidate how variations in the independent variables affect "overall_sat".
+model1 <- lm(overall_sat ~ ., data = data.frame)
+```
+
+```{r}
+summary(model1)
+```
+```{r}
+# Fit another linear regression model with 'overall_sat' as the dependent variable and all other columns as independent variables
+model2 <- lm(overall_sat ~ . - age_bracket - sex, data = data.frame)
+```
+
+```{r}
+# Summarise the simplified linear regression model
+summary(model2)
+```
+```{r}
+# In this line of code, the "car" package is loaded, offering a comprehensive array of functions and datasets tailored for statistical analyses, with a particular focus on regression and various other model types.
+library(car)
+
+# In this line of code, the Variance Inflation Factor (VIF) is computed for the independent variables within the "model2."
+vif_model2 <- vif(model2)
+
+# This line prints the VIF values to the console using the "print" function.
+# Based on the results, the independent variables used in "model2" contained Variance Inflation Factor (VIF) values less than 10. 
+print(vif_model2)
+```
+
+```{r}
+#  This code illustrates the process of fitting and evaluating a linear regression model with the goal of understanding and potentially simplifying the relationship between the dependent variable "overall_sat" and the independent variables.
+cat(paste("overall_sat =", round(coef(model2)[1], 4), "+", paste(names(coef(model2))[-1], "*", round(coef(model2)[-1], 4), collapse = " + ")))
+```
+
+```{r}
+# Here, a data frame named "data_table" is created to store the intended information and display it in a tabular format.
+data_table <- data.frame(
+
+  # In this line, the "Variable" column in the data frame is populated with the names of the variables from the "model2" coefficients.
+  # The coef(model2) function returns the coefficients of the linear regression model. names(coef(model2))[-1] is used to exclude the first element, which is typically the intercept.
+  Variable = names(coef(model2))[-1],
+  
+  # The "Mean_Value" column is filled with the mean values of the variables.
+  # The sapply function is used to apply a function to each variable name (excluding the intercept) in "model2".
+  # For each variable, it calculates the mean value using the mean() function.
+  # The data.frame[[var_name]] extracts the specific variable from the "doc_survey" data frame and na.rm = TRUE ensures that any missing values are ignored in the mean calculation.
+  Mean_Value = sapply(names(coef(model2))[-1], function(var_name) {
+    mean(data.frame[[var_name]], na.rm = TRUE)
+  }),
+  
+  # The "Coefficient" column is populated with the coefficients of the variables from "model2," excluding the intercept.
+  # This is achieved using coef(model2)[-1].
+  Coefficient = coef(model2)[-1]  
+)
+
+# This visually inspect and explore the information in tabular form, this  code prints the "data_table" to the console displaying the contents of the data frame which includes the variable names, mean values and coefficients.
+print(data_table)
+```
+
+```{r}
+# In this line of the code, the mean of the "Mean_Value" column in the "data_table" is calculated, and the result is stored in the variable "mean_mean_value.
+mean_mean_value <- mean(data_table$Mean_Value)
+```
+
+```{r}
+# In this line of the code, the mean of the "Coefficient" column in the "data_table" is calculated and saved in the variable "mean_coefficient."
+mean_coefficient <- mean(data_table$Coefficient)
+```
+
+```{r}
+# In this line of the code, a scatter plot is created using data from the "data_table".
+# The x-axis represents "Coefficient * 100" and the y-axis represents "Mean_Value".
+# The "type = 'n'" argument specifies an empty plot with no data points initially.
+# The "xlim" and "ylim" arguments set the limits for the x and y axes while "xlab" and "ylab" label the x and y axes, and "main" provides a title for the plot.
+
+plot(data_table$Coefficient * 100, data_table$Mean_Value, type = "n", xlim = c(-10, 40),
+     ylim = c(2, 5), xlab = "Satisfaction Impact (%)", ylab = "Average Performance Rating",
+     main = "Patient Satisfaction and Performance Metrics")
+
+# In this line of the code, a data frame named "offsets" is created.  It contains three columns: "Variable," "x_offset," and "y_offset".
+# "Variable" lists category names, "x_offset" stores customized x-coordinate offsets and "y_offset" stores customized y-coordinate offsets for each category.
+
+offsets <- data.frame(
+  Variable = c("respectful", "seems_competent", "emphasises_well", "listens_well", "explains_and_updates_well", "ward_type"),
+  x_offset = c(0.5, 0.5, -0.5, -0.5, 0.5, -0.5), 
+  y_offset = c(0.1, 0.1, -0.1, -0.1, 0.1, -0.1) 
+)
+
+# In this line of the code, the "offsets" data frame is merged with the "data_table" based on the common column "Variable".
+# This operation effectively adds the "x_offset" and "y_offset" values to the "data_table."
+
+data_table <- merge(data_table, offsets, by = "Variable")
+
+# In this block of code, operations are performed within the context of the "data_table" data frame. The "points" function adds data points to the scatter plot.
+# The x and y coordinates are determined by "Coefficient * 100" and "Mean_Value" respectively.
+# The color and shape of the points are set based on the "Variable" column, with red points used for "ward_type" and black points for other categories.
+# The "text" function adds text labels to the data points with customized offsets.
+
+with(data_table, {
+  points(Coefficient * 100, Mean_Value, col = ifelse(Variable == "ward_type", "red", "black"), pch = 21, bg = ifelse(Variable == "ward_type", "red", "black"))
+  text(Coefficient * 100 + x_offset, Mean_Value + y_offset, labels = Variable)
+})
+
+# In this line of the code, horizontal and vertical dashed lines are added to the plot.
+# The horizontal line is drawn at the level of "mean_mean_value" on the y-axis representing the mean of the "Mean_Value" column.
+# The line is colored red and has a dashed pattern specified by "lty = 2".
+# The vertical line is drawn at a position calculated from "mean_coefficient" multiplied by 100 on the x-axis. This line is also coloured red and has a dashed pattern.
+
+abline(h = mean_mean_value, v = mean_coefficient * 100, col = "red", lty = 2)
+```
+
