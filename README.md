@@ -325,8 +325,81 @@ print(data_table)
 <img width="579" alt="9" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/3ffc9480-cbd6-4060-8072-aea307eb3ebf">
 
 
+After storing the model2 variables' coefficients and means, the following codes will be executed to create the performance impact chart.
+
+```
+# In this line of the code, the mean of the "Mean_Value" column in the "data_table" is calculated, and the result is stored in the variable "mean_mean_value.
+
+mean_mean_value <- mean(data_table$Mean_Value)
+```
+
+```
+# In this line of the code, the mean of the "Coefficient" column in the "data_table" is calculated and saved in the variable "mean_coefficient."
+
+mean_coefficient <- mean(data_table$Coefficient)
+
+```
+```
+# In this line of the code, a scatter plot is created using data from the "data_table." The x-axis represents "Coefficient * 100," and the y-axis represents "Mean_Value." The "type = 'n'" argument specifies an empty plot with no data points initially. The "xlim" and "ylim" arguments set the limits for the x and y axes, while "xlab" and "ylab" label the x and y axes, and "main" provides a title for the plot.
+
+plot(data_table$Coefficient * 100, data_table$Mean_Value, type = "n", xlim = c(-10, 40),
+     ylim = c(2, 5), xlab = "Satisfaction Impact (%)", ylab = "Average Performance Rating",
+     main = "Patient Satisfaction and Performance Metrics")
+
+# In this line of the code, a data frame named "offsets" is created.  It contains three columns: "Variable," "x_offset," and "y_offset". "Variable" lists category names, "x_offset" stores customized x-coordinate offsets, # and "y_offset" stores customized y-coordinate offsets for each category.
+
+offsets <- data.frame(
+  Variable = c("respectful", "seems_competent", "emphasises_well", "listens_well", "explains_and_updates_well", "ward_type"),
+  x_offset = c(0.5, 0.5, -0.5, -0.5, 0.5, -0.5), 
+  y_offset = c(0.1, 0.1, -0.1, -0.1, 0.1, -0.1) 
+)
+
+# In this line of the code, the "offsets" data frame is merged with the "data_table" based on the common column "Variable". This operation effectively adds the "x_offset" and "y_offset" values to the "data_table."
+
+data_table <- merge(data_table, offsets, by = "Variable")
+
+# In this block of code, operations are performed within the context of the "data_table" data frame. The "points" function adds data points to the scatter plot.  The x and y coordinates are determined by "Coefficient * 100" and "Mean_Value," respectively.  The color and shape of the points are set based on the "Variable" column, with red points used for "ward_type" and black points for other categories. The "text" function adds text labels to the data points with customized offsets.
+
+with(data_table, {
+  points(Coefficient * 100, Mean_Value, col = ifelse(Variable == "ward_type", "red", "black"), pch = 21, bg = ifelse(Variable == "ward_type", "red", "black"))
+  text(Coefficient * 100 + x_offset, Mean_Value + y_offset, labels = Variable)
+})
+
+# In this line of the code, horizontal and vertical dashed lines are added to the plot. The horizontal line is drawn at the level of "mean_mean_value" on the y-axis, representing the mean of the "Mean_Value" column. The line is colored red and has a dashed pattern specified by "lty = 2."  The vertical line is drawn at a position calculated from "mean_coefficient" multiplied by 100 on the x-axis. This line is also coloured red and has a dashed pattern.
+
+abline(h = mean_mean_value, v = mean_coefficient * 100, col = "red", lty = 2)
+
+# Based on the performance metrics chart, it is recommended that the management focus on improving the “ward type”. This is because it has the lowest average performance rating and the highest negative impact on patient satisfaction. Improving the conditions or processes related to the ward type could potentially lead to increased patient satisfaction.
+# Yes, there could be several reasons why focusing on the ward type is important:
+#Patient Comfort**: The type of ward a patient is in can significantly impact their comfort level. This includes factors like the amount of privacy they have, the noise level, and the overall environment. If patients are uncomfortable in their wards, it could lead to lower satisfaction scores.
+#Quality of Care**: The type of ward can also affect the quality of care a patient receives. For example, in a shared ward, nurses might have less time to spend with each patient compared to a private ward. This could affect the patient's perception of the care they're receiving.
+#Perceived Value**: Patients often associate the type of ward they're in with the value they're getting for their money. If they're in a ward that they perceive as lower quality, they might feel like they're not getting good value for what they're paying, which could affect their satisfaction.
+#Patient Expectations**: Patients often have expectations about the type of ward they'll be in based on their previous experiences or what they've heard from others. If their actual experience doesn't meet these expectations, it could lead to lower satisfaction scores.
+#Therefore, focusing on improving the ward type could address these issues and potentially lead to increased patient satisfaction.
+
+# Load the necessary libraries
+
+library(dplyr)
+library(car)  # Load the 'car' package for VIF calculation
+
+# Create a data frame to store the variable names, means, and coefficients
+data_table2 <- data.frame(
+  Variable = names(coef(model2))[-1],
+  Mean_Value = sapply(names(coef(model2))[-1], function(var_name) {
+    mean(data.frame[[var_name]], na.rm = TRUE)
+  }),
+  Coefficient = coef(model2)[-1]
+)
+
+# Calculate VIF for each variable and add it to the data frame
+data_table2$VIF <- car::vif(model2)
+
+# Print the data table
+print(data_table2)
+```
 
 
+![Patient and Satisfaction Performance Metrics](https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/56a0f74c-81bd-4556-83d1-31cfcd02273b)
 
 
 
