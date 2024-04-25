@@ -1,4 +1,2 @@
-*.py linguist-language=Python
-*.r linguist-language=R
 *.sql linguist-language=SQL
 *.Rmd linguist-language=R
