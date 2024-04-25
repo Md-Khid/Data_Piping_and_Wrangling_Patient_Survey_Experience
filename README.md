@@ -72,14 +72,18 @@ Next, an "SQLAlchemy" database engine is created using the provided configuratio
 ```
 engine = create_engine(f"mysql+mysqlconnector://{db_config['user']}:{db_config['password']}@{db_config['host']}:{db_config['port']}/{db_config['database']}")
 ```
-It the speficifies the location of the folder where the Excel files to be processed by the program are stored.
+It then specifies the location of the folder where the Excel files to be processed by the program are stored.
 
 ```
 folder_path = 'raw/'
 ```
-It then defines a list named "keywords" that includes specific words or terms of interest. This list enables the identification and matching of these keywords within the code later. It accommodates variations in capitalisation, ensuring that the code matches these keywords regardless of their case.
+It then defines a list named "keywords" that includes specific words or terms of interest named on the Excel sheets. This list enables the identification and matching of these keywords within the code later. It accommodates variations in capitalisation, ensuring that the code matches these keywords regardless of their case.
 ```
 keywords = ["inpatient", "warded", "ip", "inp", "in"]
+```
+A list named "month_order" is created, which contains abbreviated month names in a specific order. This list is designed to hold abbreviated month names in a specific sequence, likely to match the ordering of months used in data files or databases where the code processes or organises data. 
+```
+month_order = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 ```
 
 
