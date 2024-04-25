@@ -1,4 +1,4 @@
 *.r linguist-language=R
 *.Rmd linguist-language=R
 *.sql linguist-language=SQL
-
+*.sql linguist-detectable=true
