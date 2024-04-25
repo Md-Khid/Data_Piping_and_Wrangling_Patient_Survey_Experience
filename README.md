@@ -360,6 +360,23 @@ abline(h = mean_mean_value, v = mean_coefficient * 100, col = "red", lty = 2)
 
 ![Patient and Satisfaction Performance Metrics](https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/56a0f74c-81bd-4556-83d1-31cfcd02273b)
 
+Insights and Recommendations for Management Consideration
+
+Based on the performance metrics chart created, it is recommended that the management focus on improving the “ward type”. This is because it has the lowest average performance rating and the highest negative impact on patient satisfaction. Improving the conditions or processes related to the ward type could potentially lead to increased patient satisfaction 
+
+Patient Comfort: The category of the ward assigned to a patient can significantly impact their comfort levels. This includes factors such as the level of privacy provided, ambient noise, and the overall ward environment. In cases where patients find their assigned wards uncomfortable, there is a likelihood of lower satisfaction scores.
+
+Quality of Care: The care provided to patients may vary depending on the ward category. For example, in a shared ward, nurses may have limited time available for individual patient care compared to a private ward. This, in turn, could influence the patient's perception of the care received.
+
+Perceived Value: Patients often associate their ward category with the perceived value of their investment. If they find themselves in a ward they consider of lower quality, they may perceive that they are not receiving good value for their expenditure, potentially affecting their satisfaction.
+
+## Conclusion
+
+In summary, this project exemplifies the effective utilisation of Python, SQL and R platforms in managing and analysing healthcare data to derive actionable insights. These platforms serve as powerful tools enabling healthcare analysts to adeptly handle extensive datasets and uncover significant patterns crucial for informed decision-making in healthcare management. Together, Python, SQL and R constitute an important toolkit for healthcare analytics, with each platform contributing its unique strengths to the data analysis workflow. Python manages data preprocessing and modelling tasks, SQL oversees data storage and retrieval from databases, while R conducts advanced statistical analysis and visualisation. By harnessing the complementary features of these platforms, healthcare analysts can efficiently extract insights from data, inform evidence-based decision-making and drive continuous improvement in patient care and operational efficiency.
+
+
+
+
 
 
 
