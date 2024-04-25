@@ -143,11 +143,12 @@ DELIMITER $$
 CREATE PROCEDURE UnionAllTablesAndModify()
 BEGIN
 
-  -- Variable Declaration: Within the procedure, an integer variable named "i" is declared and initialised with the value 1. Additionally, another variable "@sql_text" is declared to store SQL statements in the form of a string.
+  -- Variable Declaration: Within the procedure, an integer variable named "i" is declared and initialised with the value 1.
+  -- Additionally, another variable "@sql_text" is declared to store SQL statements in the form of a string.
   DECLARE i INT DEFAULT 1;
   SET @sql_text = '';
 
--- While Loop: The code proceeds to enter a WHILE loop, which continues as long as the value of "i" remains less than or equal to 12.
+-- While Loop: The code proceeds to enter a WHILE loop which continues as long as the value of "i" remains less than or equal to 12.
   WHILE i <= 12 DO
     SET @table_name = CONCAT('in', LPAD(i, 2, '0'));
     SET @sql_text = CONCAT(@sql_text, ' SELECT * FROM ', @table_name);
@@ -158,18 +159,21 @@ BEGIN
   END WHILE;
 
  -- SQL Query Construction: Within the loop, an SQL query is constructed using the "CONCAT" function.
- -- It dynamically generates a "UNION ALL" statement to combine data from 12 distinct tables with names such as in01, in02, and so on.
--- Query Preparation and Execution: Subsequently, after the loop, an SQL statement is prepared by concatenating the generated SQL text with a "CREATE TABLE" statement.
--- This statement is then stored in the "@sql_text" variable. The SQL statement is subsequently prepared, executed, and deallocated using the "PREPARE," "EXECUTE," and "DEALLOCATE PREPARE" statements. This culminates in the creation of a new table named "doc_survey," encompassing data from all the specified tables.
+ -- It dynamically generates a "UNION ALL" statement to combine data from 12 distinct tables with names such as in01, in02 and so on.
+ -- Query Preparation and Execution: Subsequently, after the loop, an SQL statement is prepared by concatenating the generated SQL text with a "CREATE TABLE" statement.
+ -- This statement is then stored in the "@sql_text" variable. The SQL statement is subsequently prepared, executed and deallocated using the "PREPARE," "EXECUTE," and
+ -- "DEALLOCATE PREPARE" statements. This culminates in the creation of a new table named "doc_survey", encompassing data from all the specified tables.
   SET @sql_text = CONCAT('CREATE TABLE doc_survey AS ', @sql_text, ';');
   PREPARE stmt FROM @sql_text;
   EXECUTE stmt;
   DEALLOCATE PREPARE stmt;
 
  -- Table Column Modification: The code subsequently configures the "@sql_text" variable with an SQL query that alters the structure of the "doc_survey" table.
- -- This involves changing the data type of several columns to "TINYINT" and adding comments to elucidate the significance of values within these columns. For this purpose, the "ALTER TABLE" statement is utilised.
--- Preparation and Execution of Column Modification Query: Similar to the previous step, the SQL statement for modifying the table columns is prepared and executed.
--- In this query, the columns are renamed and the data type is changed to "TINYINT" for enhanced storage efficiency (for values range from 1 to 99). Comments have been added for future reference, aiding others in comprehending the data.
+ -- This involves changing the data type of several columns to "TINYINT" and adding comments to elucidate the significance of values within these columns.
+ -- For this purpose, the "ALTER TABLE" statement is utilised.
+ -- Preparation and Execution of Column Modification Query: Similar to the previous step, the SQL statement for modifying the table columns is prepared and executed.
+ -- In this query, the columns are renamed and the data type is changed to "TINYINT" for enhanced storage efficiency (for values range from 1 to 99).
+ -- Comments have been added for future reference, aiding others in comprehending the data.
   SET @sql_text = '
     ALTER TABLE doc_survey 
       CHANGE X1 respectful TINYINT COMMENT "How courteous and respectful the doctors were  (1=Very Poor; 2=Poor; 3=Satisfactory; 4=Good; 5=Excellent; 99=NA)",
@@ -210,7 +214,9 @@ CALL UnionAllTablesAndModify();
 ```
 Following the execution of the MySQL query, the "doc_survey" table comprising 17,708 rows and the stored procedure function "UnionAllTablesAndModify" will be created in the MySQL survey database.
 
+MySQL Database
 <img width="960" alt="2" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/cc0756a6-1e19-40e5-92de-e24b6b44c54b">
+
 <img width="960" alt="3" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/467e019d-a1f6-46cd-bc47-24228798aa18">
 
 
