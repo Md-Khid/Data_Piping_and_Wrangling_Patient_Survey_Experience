@@ -57,6 +57,15 @@ The code begins by importing necessary libraries and the "create_engine" functio
 import pandas as pd, sqlalchemy, os, re
 from sqlalchemy import create_engine
 ```
-          
-    
+A Python dictionary named "db_config" is defined to store the configuration details required for connecting to a database. This dictionary serves the purpose of defining a configuration that can be utilised later in the code to establish a connection to the designated database.     
+```
+db_config = {
+    "user": "root",
+    "password": "",
+    "host": "localhost",
+    "port": 3306,  # Default MySQL port
+    "database": "anl503-eca"
+}
+```
+
 
