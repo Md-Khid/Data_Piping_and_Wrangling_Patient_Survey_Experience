@@ -269,5 +269,65 @@ summary(model2)
 ```
 <img width="535" alt="6" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/e64f326f-2269-4fa9-a4ca-1fb99b06f3d3">
 
+Additionally, it is  good practice to examine multicollinearity in a regression model. Multicollinearity arises when the independent variables within a regression model exhibit strong correlations with one another, potentially causing complications in model interpretation and influencing the dependability of the estimated coefficients. The results indicate that there is a moderate level of multicollinearity and may not necessarily cause severe problems to the model. 
+
+```
+# In this line of code, the "car" package is loaded, offering a comprehensive array of functions and datasets tailored for statistical analyses, with a particular focus on regression and various other model types.
+library(car)
+
+# In this line of code, the Variance Inflation Factor (VIF) is computed for the independent variables within the "model2."
+vif_model2 <- vif(model2)
+
+# This line prints the VIF values to the console using the "print" function. Based on the results, the independent variables used in "model2" contained Variance Inflation Factor (VIF) values less than 10. 
+
+print(vif_model2)
+```
+<img width="528" alt="7" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/d68ee442-5a2c-42ab-9fa1-6aeee1ed4482">
+
+To gain a deeper understanding of the model, the project will print out the regression formula. This formula can be utilised to evaluate patient overall satisfaction scores based on future survey data.
+
+```
+#  This code illustrates the process of fitting and evaluating a linear regression model with the goal of understanding and potentially simplifying the relationship between the dependent variable "overall_sat" and the independent variables.
+
+cat(paste("overall_sat =", round(coef(model2)[1], 4), "+", paste(names(coef(model2))[-1], "*", round(coef(model2)[-1], 4), collapse = " + ")))
+
+```
+<img width="527" alt="8" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/17fb670d-b498-4dcd-8c6d-598752560ed1">
+
+To create a performance-impact chart using the R visualisation functions plot(), points(), text(), axis() and abline(), a data table should be generated for storing the coefficients of model2 and the means of its variables.
+
+```
+# In this line, the code loads the "dplyr" library for data manipulation and transformation in R.
+library(dplyr)
+
+```
+Here, a data frame named "data_table" is created to store the intended information and display it in a tabular format.
+
+```
+data_table <- data.frame(
+
+  # In this line, the "Variable" column in the data frame is populated with the names of the variables from the "model2" coefficients. The coef(model2) function returns the coefficients of the linear regression model. names(coef(model2))[-1] is used to exclude the first element, which is typically the intercept.
+  Variable = names(coef(model2))[-1],
+  
+  # The "Mean_Value" column is filled with the mean values of the variables. The sapply function is used to apply a function to each variable name (excluding the intercept) in "model2." For each variable, it calculates the mean value using the mean() function. The data.frame[[var_name]] extracts the specific variable from the "doc_survey" data frame, and na.rm = TRUE ensures that any missing values are ignored in the mean calculation.
+  Mean_Value = sapply(names(coef(model2))[-1], function(var_name) {
+    mean(data.frame[[var_name]], na.rm = TRUE)
+  }),
+  
+  # The "Coefficient" column is populated with the coefficients of the variables from "model2," excluding the intercept. This is achieved using coef(model2)[-1].
+  Coefficient = coef(model2)[-1]  
+)
+
+# This visually inspect and explore the information in tabular form, this  code prints the "data_table" to the console, displaying the contents of the data frame, which includes the variable names, mean values, and coefficients.
+print(data_table)
+```
+
+<img width="579" alt="9" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/3ffc9480-cbd6-4060-8072-aea307eb3ebf">
+
+
+
+
+
+
 
 
