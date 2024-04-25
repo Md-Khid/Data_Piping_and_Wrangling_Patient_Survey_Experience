@@ -294,7 +294,8 @@ vif_model2 <- vif(model2)
 # Based on the results, the independent variables used in "model2" contained Variance Inflation Factor (VIF) values less than 10. 
 print(vif_model2)
 ```
-<img width="528" alt="7" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/d68ee442-5a2c-42ab-9fa1-6aeee1ed4482">
+
+<img width="500" alt="Capture" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_Patient_Survey_Experience/assets/160820522/ee5bf25b-2219-4dfb-b5f0-8f02fab1925d">
 
 7. To gain a deeper understanding of the model, the project will print out the regression formula. This formula can be utilised to evaluate patient overall satisfaction scores based on future survey data.
 
