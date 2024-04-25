@@ -232,4 +232,14 @@ suppressWarnings(data.frame <- dbGetQuery(con, "SELECT * FROM doc_survey"))
 # Close the database connection. This code signals the intention to close the connection to the database.
 dbDisconnect(con)
 ```
+Check the structure of the doc_survey dataframe in R.
+
+```
+# Check the structure of the retrieved data table. This code is used to examine the structure of the data table that has been retrieved.
+str(data.frame)
+```
+<img width="529" alt="4" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/22d7a2c1-7d71-4446-a044-e9aa1d42cec9">
+
+It is noted that all the variables in the data are integers. Therefore, the project will proceed to create a Simple Linear Regression model based on the doc_survey data.
+
 
