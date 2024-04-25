@@ -1,2 +1,2 @@
-*.sql linguist-language=SQL
+*.r linguist-language=R
 *.Rmd linguist-language=R
