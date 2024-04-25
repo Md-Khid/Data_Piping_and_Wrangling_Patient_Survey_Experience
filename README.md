@@ -36,6 +36,21 @@ This project will utilise:
 - Tableplus version 1
         
 ### Uploading Excel Documents to MySQL with Python
+To construct a data flow, the project will use a Python program to extract data from the twelve Excel documents and subsequently transfer it to the MySQL database, following the specified naming convention:
+
+| Excel filename | MySQL table name |
+|----------------|------------------|
+| Jan.xlsx       | in01             |
+| Feb.xlsx       | in02             |
+| Mar.xlsx       | in03             |
+| Apr.xlsx       | in04             |
+| May.xlsx       | in05             |
+| Jun.xlsx       | in06             |
+| Jul.xlsx       | in07             |
+| Aug.xlsx       | in08             |
+| Sep.xlsx       | in09             |
+| Oct.xlsx       | in10             |
+
 
           
     
