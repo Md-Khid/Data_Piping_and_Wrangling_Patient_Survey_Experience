@@ -18,7 +18,7 @@ The survey dataset for the entire year is stored in twelve separate Microsoft Ex
 | X4                      | listens_well           | "How well the doctors understood your concerns (1=Very Poor; 2=Poor; 3=Satisfactory; 4=Good; 5=Excellent; 99=NA)" |
 | X5                      | explains_and_updates_well | How well the doctors provided clear explanation and updates on care and treatment (1=Very Poor; 2=Poor; 3=Satisfactory; 4=Good; 5=Excellent; 99=NA) |
 | Y                       | overall_sat            | "How satisfied you were with the medical treatment you received (1=Very Poor; 2=Poor; 3=Satisfactory; 4=Good; 5=Excellent; 99=NA)" |
-| AGE                     | age_bracket            | "Age bracket (1/2/3=[17,29]; 4=[30,39]; 5=[40,49]; 6=[50,59]; 7=[60,64]; 8=[65,inf]; 99=NA)"                |
+| AGE                     | age_bracket            | "Age bracket (1/2/3=[17,29]; 4=[30,39]; 5=[40,49]; 6=[50,59]; 7=[60,64]; 8=[65,inf]; 99=RF)"                |
 | GENDER                  | sex                    | "Gender (1=M; 2=F)"                                                                                          |
 | WTYPE                   | ward_type              | "Ward type (1=A1; 2=B1; 3=B2; 4=C)"                                                                         |
 
@@ -131,10 +131,6 @@ After executing these Python codes, the following outputs will be obtained from 
 #### MySQL
 <img width="960" alt="1" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/91ccf0f2-cd9d-479c-831c-fe12feaa9ce2">
 
-## Uploading Excel Documents to MySQL with Python
-
-The project will begin constructing a "doc survey" table, consolidating all records from each of the twelve tables. Following this, it will proceed to convert all missing or non-valid values, such as '99', to NULL. To create the new table named "doc_survey", the project will use a stored procedure within the MySQL query. This procedure will include loop functions for executing iterative tasks and conditional logic. Acting as a container for the entire process, it will involve actions like combining data from multiple tables, renaming columns, altering data types, and updating values. Upon invocation, this procedure will execute all tasks as a unified operation.
-
 ## Constructing 'Doc Survey' Table with SQL Data Consolidation and Transformation
 The project will begin constructing a "doc survey" table, consolidating all records from each of the twelve tables. Following this, it will proceed to convert all missing or non-valid values, such as '99', to NULL. To create the new table named "doc_survey", the project will use a stored procedure within the MySQL query. This procedure will include loop functions for executing iterative tasks and conditional logic. Acting as a container for the entire process, it will involve actions like combining data from multiple tables, renaming columns, altering data types, and updating values. Upon invocation, this procedure will execute all tasks as a unified operation.
 
@@ -169,7 +165,7 @@ BEGIN
  -- Table Column Modification: The code subsequently configures the "@sql_text" variable with an SQL query that alters the structure of the "doc_survey" table.
  -- This involves changing the data type of several columns to "TINYINT" and adding comments to elucidate the significance of values within these columns. For this purpose, the "ALTER TABLE" statement is utilised.
 -- Preparation and Execution of Column Modification Query: Similar to the previous step, the SQL statement for modifying the table columns is prepared and executed.
--- In this query, the columns are renamed in accordance with Table 1 in the assignment, and the data type is changed to "TINYINT" for enhanced storage efficiency (for values range from 1 to 99). Comments have been added for future reference, aiding others in comprehending the data.
+-- In this query, the columns are renamed and the data type is changed to "TINYINT" for enhanced storage efficiency (for values range from 1 to 99). Comments have been added for future reference, aiding others in comprehending the data.
   SET @sql_text = '
     ALTER TABLE doc_survey 
       CHANGE X1 respectful TINYINT COMMENT "How courteous and respectful the doctors were  (1=Very Poor; 2=Poor; 3=Satisfactory; 4=Good; 5=Excellent; 99=NA)",
@@ -211,6 +207,8 @@ CALL UnionAllTablesAndModify();
 Following the execution of the MySQL query, the "doc_survey" table comprising 17,708 rows and the stored procedure function "UnionAllTablesAndModify" will be created in the MySQL survey database.
 
 <img width="960" alt="2" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/cc0756a6-1e19-40e5-92de-e24b6b44c54b">
+<img width="960" alt="3" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/467e019d-a1f6-46cd-bc47-24228798aa18">
+
 
 
 
