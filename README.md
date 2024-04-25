@@ -335,7 +335,14 @@ print(data_table)
 
 
 9. After storing the model2 variables' coefficients and means, the following codes will be executed to create the performance impact chart.
-
+```
+# In this line of the code, the mean of the "Mean_Value" column in the "data_table" is calculated, and the result is stored in the variable "mean_mean_value.
+mean_mean_value <- mean(data_table$Mean_Value)
+```
+```
+# In this line of the code, the mean of the "Coefficient" column in the "data_table" is calculated and saved in the variable "mean_coefficient."
+mean_coefficient <- mean(data_table$Coefficient)
+```
 ```
 # In this line of the code, a scatter plot is created using data from the "data_table".
 # The x-axis represents "Coefficient * 100" and the y-axis represents "Mean_Value".
