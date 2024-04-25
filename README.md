@@ -64,7 +64,7 @@ db_config = {
     "password": "",
     "host": "localhost",
     "port": 3306,  # Default MySQL port
-    "database": "anl503-eca"
+    "database": "survey"
 }
 ```
 Next, an "SQLAlchemy" database engine is created using the provided configuration information. The "create_engine" function combines all these elements into a connection string and employs it to establish an SQLAlchemy engine. This engine can be utilised to execute SQL queries and interact with the specified MySQL database using the provided connection details.
@@ -75,7 +75,7 @@ engine = create_engine(f"mysql+mysqlconnector://{db_config['user']}:{db_config['
 It then specifies the location of the folder where the Excel files to be processed by the program are stored.
 
 ```
-folder_path = 'raw/'
+folder_path = 'survey/'
 ```
 It then defines a list named "keywords" that includes specific words or terms of interest named on the Excel sheets. This list enables the identification and matching of these keywords within the code later. It accommodates variations in capitalisation, ensuring that the code matches these keywords regardless of their case.
 ```
@@ -120,7 +120,7 @@ for filename in os.listdir(folder_path):
 # After processing all Excel files, a final message is generated to indicate that all data frames have been uploaded to the MySQL database as tables in order.
 print("All data frames have been uploaded to the MySQL database as tables in order.")
 ```
-After executing these Python codes, the following outputs will be obtained from the Python environment and the MySQL database "anl503-eca" 
+After executing these Python codes, the following outputs will be obtained from the Python environment and the MySQL database "survey". 
 
 
 
