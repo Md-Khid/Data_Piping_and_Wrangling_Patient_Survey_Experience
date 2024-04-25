@@ -264,7 +264,7 @@ Another simplified linear regression model (model2) is fitted without the "age_b
 model2 <- lm(overall_sat ~ . - age_bracket - sex, data = data.frame)
 ```
 ```
-# Summarize the simplified linear regression model
+# Summarise the simplified linear regression model
 summary(model2)
 ```
 <img width="535" alt="6" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/e64f326f-2269-4fa9-a4ca-1fb99b06f3d3">
