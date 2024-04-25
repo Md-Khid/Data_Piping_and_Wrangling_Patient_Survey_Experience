@@ -131,7 +131,7 @@ After executing these Python codes, the following outputs will be obtained from 
 #### MySQL
 <img width="960" alt="1" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/91ccf0f2-cd9d-479c-831c-fe12feaa9ce2">
 
-## Constructing 'Doc Survey' Table with SQL Data Consolidation and Transformation
+## Constructing 'Doc Survey' Table with SQL: Data Consolidation and Transformation
 The project will begin constructing a "doc survey" table, consolidating all records from each of the twelve tables. Following this, it will proceed to convert all missing or non-valid values such as '99' to NULL. Additionally, it will transform all data types into integers (specifically TINYINT) for all numeric variables found within the "doc_survey" table to enhance storage efficiency (for values ranging from 1 to 99). To create the new table named "doc_survey," the project will use a stored procedure within the MySQL query. This procedure will include loop functions for executing iterative tasks and conditional logic, serving as a container for the entire process. It will involve actions such as combining data from multiple tables, renaming columns, altering data types and updating values. 
 ```
 DELIMITER $$
@@ -209,5 +209,6 @@ Following the execution of the MySQL query, the "doc_survey" table comprising 17
 <img width="960" alt="3" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/467e019d-a1f6-46cd-bc47-24228798aa18">
 
 
+## Uploading "doc_survey" data from MySQL to R
 
 
