@@ -369,14 +369,6 @@ with(data_table, {
 
 abline(h = mean_mean_value, v = mean_coefficient * 100, col = "red", lty = 2)
 
-# Based on the performance metrics chart, it is recommended that the management focus on improving the “ward type”. This is because it has the lowest average performance rating and the highest negative impact on patient satisfaction. Improving the conditions or processes related to the ward type could potentially lead to increased patient satisfaction.
-# Yes, there could be several reasons why focusing on the ward type is important:
-#Patient Comfort**: The type of ward a patient is in can significantly impact their comfort level. This includes factors like the amount of privacy they have, the noise level, and the overall environment. If patients are uncomfortable in their wards, it could lead to lower satisfaction scores.
-#Quality of Care**: The type of ward can also affect the quality of care a patient receives. For example, in a shared ward, nurses might have less time to spend with each patient compared to a private ward. This could affect the patient's perception of the care they're receiving.
-#Perceived Value**: Patients often associate the type of ward they're in with the value they're getting for their money. If they're in a ward that they perceive as lower quality, they might feel like they're not getting good value for what they're paying, which could affect their satisfaction.
-#Patient Expectations**: Patients often have expectations about the type of ward they'll be in based on their previous experiences or what they've heard from others. If their actual experience doesn't meet these expectations, it could lead to lower satisfaction scores.
-#Therefore, focusing on improving the ward type could address these issues and potentially lead to increased patient satisfaction.
-
 # Load the necessary libraries
 
 library(dplyr)
