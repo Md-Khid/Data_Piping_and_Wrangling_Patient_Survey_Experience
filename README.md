@@ -256,3 +256,18 @@ summary(model1)
 ```
 
 <img width="527" alt="5" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/0efb94aa-f4ff-443a-9760-67599106388c">
+
+
+Another simplified linear regression model (model2) is fitted without the "age_bracket" and "sex" variables. This streamlined model maintains the same coefficient of determination (R-squared) and the Adjusted R-squared as the initial model. While the values for these statistical measures in the second regression model remain consistent as in the first, this approach effectively simplifies the regression model by utilising fewer variables to predict 'overall_sat.', thus exemplifying the principle of parsimony.
+```
+# Fit another linear regression model with 'overall_sat' as the dependent variable and all other columns as independent variables
+model2 <- lm(overall_sat ~ . - age_bracket - sex, data = data.frame)
+```
+```
+# Summarize the simplified linear regression model
+summary(model2)
+```
+<img width="535" alt="6" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/e64f326f-2269-4fa9-a4ca-1fb99b06f3d3">
+
+
+
