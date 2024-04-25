@@ -217,6 +217,7 @@ Following the execution of the MySQL query, the "doc_survey" table comprising 17
 MySQL Database
 <img width="960" alt="2" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/cc0756a6-1e19-40e5-92de-e24b6b44c54b">
 
+Modified “doc_survey” columns and data type 
 <img width="960" alt="3" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/467e019d-a1f6-46cd-bc47-24228798aa18">
 
 
