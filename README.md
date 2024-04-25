@@ -244,7 +244,7 @@ suppressWarnings(data.frame <- dbGetQuery(con, "SELECT * FROM doc_survey"))
 # Close the database connection. This code signals the intention to close the connection to the database.
 dbDisconnect(con)
 ```
-After saving the "doc_survey" MySQL table as an R data.frame, it is important to inspect the structure of the retrieved data table. This step enables the project to gain an understanding of the characteristics of the data stored in the R environment. It is noted that all the variables stored in the data are integers. Therefore, the project will proceed to create a Simple Linear Regression model based on the doc_survey data in R.
+After saving the "doc_survey" MySQL table as an R data.frame, it is important to inspect the structure of the retrieved data table. This step enables the project to gain an understanding of the characteristics of the data stored in the R environment. It is noted that all the variables stored in the data are integers. Therefore, the project wcan proceed to create a Simple Linear Regression model based on the doc_survey data in R.
 
 ```
 # Check the structure of the retrieved data table. This code is used to examine the structure of the data table that has been retrieved.
