@@ -217,19 +217,19 @@ To read the "doc_survey" MySQL table and save it as an R data.frame, the followi
 # Set the working directory 
 setwd("")
 
-# Load the RMySQL package: This code checks if the RMySQL package is available and, if not installs and loads it.
+# Load the RMySQL package. This code checks if the RMySQL package is available and, if not installs and loads it.
 if (!require(RMySQL)) {
   install.packages("RMySQL", dependencies = TRUE)
   library(RMySQL)
 }
 
-# Establish a database connection: This code initiates the process of establishing a connection to MySQl database.
+# Establish a database connection. This code initiates the process of establishing a connection to MySQl database.
 con <- dbConnect(MySQL(), dbname = "survey", user = "root", password = "")
 
-# Execute a query to fetch data from the table: This code signifies the execution of a database query to retrieve data from a specific table.
+# Execute a query to fetch data from the table. This code signifies the execution of a database query to retrieve data from a specific table.
 suppressWarnings(data.frame <- dbGetQuery(con, "SELECT * FROM doc_survey"))
 
-# Close the database connection: This code signals the intention to close the connection to the database.
+# Close the database connection. This code signals the intention to close the connection to the database.
 dbDisconnect(con)
 ```
 
