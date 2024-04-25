@@ -328,18 +328,6 @@ print(data_table)
 After storing the model2 variables' coefficients and means, the following codes will be executed to create the performance impact chart.
 
 ```
-# In this line of the code, the mean of the "Mean_Value" column in the "data_table" is calculated, and the result is stored in the variable "mean_mean_value.
-
-mean_mean_value <- mean(data_table$Mean_Value)
-```
-
-```
-# In this line of the code, the mean of the "Coefficient" column in the "data_table" is calculated and saved in the variable "mean_coefficient."
-
-mean_coefficient <- mean(data_table$Coefficient)
-
-```
-```
 # In this line of the code, a scatter plot is created using data from the "data_table." The x-axis represents "Coefficient * 100," and the y-axis represents "Mean_Value." The "type = 'n'" argument specifies an empty plot with no data points initially. The "xlim" and "ylim" arguments set the limits for the x and y axes, while "xlab" and "ylab" label the x and y axes, and "main" provides a title for the plot.
 
 plot(data_table$Coefficient * 100, data_table$Mean_Value, type = "n", xlim = c(-10, 40),
@@ -368,28 +356,7 @@ with(data_table, {
 # In this line of the code, horizontal and vertical dashed lines are added to the plot. The horizontal line is drawn at the level of "mean_mean_value" on the y-axis, representing the mean of the "Mean_Value" column. The line is colored red and has a dashed pattern specified by "lty = 2."  The vertical line is drawn at a position calculated from "mean_coefficient" multiplied by 100 on the x-axis. This line is also coloured red and has a dashed pattern.
 
 abline(h = mean_mean_value, v = mean_coefficient * 100, col = "red", lty = 2)
-
-# Load the necessary libraries
-
-library(dplyr)
-library(car)  # Load the 'car' package for VIF calculation
-
-# Create a data frame to store the variable names, means, and coefficients
-data_table2 <- data.frame(
-  Variable = names(coef(model2))[-1],
-  Mean_Value = sapply(names(coef(model2))[-1], function(var_name) {
-    mean(data.frame[[var_name]], na.rm = TRUE)
-  }),
-  Coefficient = coef(model2)[-1]
-)
-
-# Calculate VIF for each variable and add it to the data frame
-data_table2$VIF <- car::vif(model2)
-
-# Print the data table
-print(data_table2)
 ```
-
 
 ![Patient and Satisfaction Performance Metrics](https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/56a0f74c-81bd-4556-83d1-31cfcd02273b)
 
