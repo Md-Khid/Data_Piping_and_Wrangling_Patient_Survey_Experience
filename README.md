@@ -51,7 +51,7 @@ To construct a data flow, the project will use a Python program to extract data 
 | Sep.xlsx       | in09             |
 | Oct.xlsx       | in10             |
 
-The code begins by importing necessary libraries and the "create_engine" function from the "sqlalchemy" module. Initially, it imports "pandas" and assigns it the alias "pd" for data manipulation. Subsequently, the complete "sqlalchemy" library, primarily used for managing relational databases, is imported. The "os" library follows, which facilitates file and directory operations. Lastly, "re" is imported from Python's standard library, enabling string manipulation through pattern matching. Lastly, "create_engine" is imported from "sqlalchemy" to create a database engine for connecting to relational databases.
+1. The code begins by importing necessary libraries and the "create_engine" function from the "sqlalchemy" module. Initially, it imports "pandas" and assigns it the alias "pd" for data manipulation. Subsequently, the complete "sqlalchemy" library, primarily used for managing relational databases, is imported. The "os" library follows, which facilitates file and directory operations. Lastly, "re" is imported from Python's standard library, enabling string manipulation through pattern matching. Lastly, "create_engine" is imported from "sqlalchemy" to create a database engine for connecting to relational databases.
 
 ```
 import pandas as pd, sqlalchemy, os, re
