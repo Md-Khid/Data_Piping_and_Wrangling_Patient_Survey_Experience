@@ -214,7 +214,7 @@ CALL UnionAllTablesAndModify();
 ```
 Following the execution of the MySQL query, the "doc_survey" table comprising 17,708 rows and the stored procedure function "UnionAllTablesAndModify" will be created in the MySQL survey database.
 
-MySQL Database
+MySQL Database (updated)
 <img width="960" alt="2" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/cc0756a6-1e19-40e5-92de-e24b6b44c54b">
 
 Modified “doc_survey” columns and data type 
