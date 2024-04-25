@@ -6,7 +6,7 @@ This project aims to demonstrate the transferring of data between Python, SQL an
 ## Dataset Information
 
 ### Data Variables
-The survey dataset for the entire year is stored in twelve separate Microsoft Excel documents, one for each calendar month. The significant part of the survey focuses on the experiences of warded patients with their doctors, including aspects such as respect, competency, empathy and listening skills.[Dataset](https://github.com/Md-Khid/Data_Wrangling_Patient_Survey_Experience/tree/main/Survey%20Data)
+The survey dataset for the entire year is stored in twelve separate Microsoft Excel documents, one for each calendar month. The significant part of the survey focuses on the experiences of warded patients with their doctors, including aspects such as respect, competency, empathy and listening skills. [Dataset](https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/tree/main/survey)
       
 ### Data Dictionary
 
