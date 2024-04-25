@@ -381,7 +381,7 @@ abline(h = mean_mean_value, v = mean_coefficient * 100, col = "red", lty = 2)
 
 ### Insights and Recommendations for Management Consideration
 
-Based on the performance metrics chart created, it is recommended that the management focus on improving the “ward type”. This is because it has the lowest average performance rating and the highest negative impact on patient satisfaction. Improving the conditions or processes related to the ward type could potentially lead to increased patient satisfaction 
+Based on the performance metrics chart created, it is recommended that the management focus on improving the “ward type”. This is because it has the lowest average performance rating and the highest negative impact on patient satisfaction. Improving the conditions or processes related to the ward type could potentially lead to increased patient satisfaction.  
 
 Patient Comfort: The category of the ward assigned to a patient can significantly impact their comfort levels. This includes factors such as the level of privacy provided, ambient noise, and the overall ward environment. In cases where patients find their assigned wards uncomfortable, there is a likelihood of lower satisfaction scores.
 
