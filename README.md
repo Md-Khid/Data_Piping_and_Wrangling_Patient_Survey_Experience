@@ -136,12 +136,14 @@ The project will begin constructing a "doc survey" table, consolidating all reco
 The project will begin constructing a "doc survey" table, consolidating all records from each of the twelve tables. Following this, it will proceed to convert all missing or non-valid values, such as '99', to NULL. To create the new table named "doc_survey", the project will use a stored procedure within the MySQL query. This procedure will include loop functions for executing iterative tasks and conditional logic. Acting as a container for the entire process, it will involve actions like combining data from multiple tables, renaming columns, altering data types, and updating values. Upon invocation, this procedure will execute all tasks as a unified operation.
 
 ```
--- Procedure Creation: The code initiates by setting the delimiter to "$$" to define the stored procedure. Subsequently, it creates the procedure named "UnionAllTablesAndModify" employing the "CREATE PROCEDURE" statement.
+-- Procedure Creation: The code initiates by setting the delimiter to "$$" to define the stored procedure.
+-- Subsequently, it creates the procedure named "UnionAllTablesAndModify" employing the "CREATE PROCEDURE" statement.
 DELIMITER $$
 CREATE PROCEDURE UnionAllTablesAndModify()
 BEGIN
 
-  -- Variable Declaration: Within the procedure, an integer variable named "i" is declared and initialised with the value 1. Additionally, another variable "@sql_text" is declared to store SQL statements in the form of a string.
+  -- Variable Declaration: Within the procedure, an integer variable named "i" is declared and initialised with the value 1.
+  -- Additionally, another variable "@sql_text" is declared to store SQL statements in the form of a string.
   DECLARE i INT DEFAULT 1;
   SET @sql_text = '';
 
@@ -155,15 +157,20 @@ BEGIN
     SET i = i + 1;
   END WHILE;
 
- -- SQL Query Construction: Within the loop, an SQL query is constructed using the "CONCAT" function. It dynamically generates a "UNION ALL" statement to combine data from 12 distinct tables with names such as in01, in02, and so on.
--- Query Preparation and Execution: Subsequently, after the loop, an SQL statement is prepared by concatenating the generated SQL text with a "CREATE TABLE" statement. This statement is then stored in the "@sql_text" variable. The SQL statement is subsequently prepared, executed, and deallocated using the "PREPARE," "EXECUTE," and "DEALLOCATE PREPARE" statements. This culminates in the creation of a new table named "doc_survey," encompassing data from all the specified tables.
+ -- SQL Query Construction: Within the loop, an SQL query is constructed using the "CONCAT" function.
+ -- It dynamically generates a "UNION ALL" statement to combine data from 12 distinct tables with names such as in01, in02, and so on.
+-- Query Preparation and Execution: Subsequently, after the loop, an SQL statement is prepared by concatenating the generated SQL text with a "CREATE TABLE" statement.
+-- This statement is then stored in the "@sql_text" variable. The SQL statement is subsequently prepared, executed, and deallocated using the "PREPARE," "EXECUTE," and "DEALLOCATE PREPARE" statements. This culminates in the creation of a new table named "doc_survey," encompassing data from all the specified tables.
   SET @sql_text = CONCAT('CREATE TABLE doc_survey AS ', @sql_text, ';');
   PREPARE stmt FROM @sql_text;
   EXECUTE stmt;
   DEALLOCATE PREPARE stmt;
 
- -- Table Column Modification: The code subsequently configures the "@sql_text" variable with an SQL query that alters the structure of the "doc_survey" table. This involves changing the data type of several columns to "TINYINT" and adding comments to elucidate the significance of values within these columns. For this purpose, the "ALTER TABLE" statement is utilised.
--- Preparation and Execution of Column Modification Query: Similar to the previous step, the SQL statement for modifying the table columns is prepared and executed. In this query, the columns are renamed in accordance with Table 1 in the assignment, and the data type is changed to "TINYINT" for enhanced storage efficiency (for values range from 1 to 99). Comments have been added for future reference, aiding others in comprehending the data.
+ -- Table Column Modification: The code subsequently configures the "@sql_text" variable with an SQL query that alters the structure of the "doc_survey" table.
+ -- This involves changing the data type of several columns to "TINYINT" and adding comments to elucidate the significance of values within these columns.
+ -- For this purpose, the "ALTER TABLE" statement is utilised.
+-- Preparation and Execution of Column Modification Query: Similar to the previous step, the SQL statement for modifying the table columns is prepared and executed.
+-- In this query, the columns are renamed in accordance with Table 1 in the assignment, and the data type is changed to "TINYINT" for enhanced storage efficiency (for values range from 1 to 99). Comments have been added for future reference, aiding others in comprehending the data.
   SET @sql_text = '
     ALTER TABLE doc_survey 
       CHANGE X1 respectful TINYINT COMMENT "How courteous and respectful the doctors were  (1=Very Poor; 2=Poor; 3=Satisfactory; 4=Good; 5=Excellent; 99=NA)",
@@ -179,7 +186,8 @@ BEGIN
   EXECUTE stmt;
   DEALLOCATE PREPARE stmt;
 
--- Value Updates: The code subsequently assigns "@sql_text" to another SQL query responsible for updating specific columns within the "doc_survey" table. It replaces values of 99 with NULL in these columns.
+-- Value Updates: The code subsequently assigns "@sql_text" to another SQL query responsible for updating specific columns within the "doc_survey" table.
+-- It replaces values of 99 with NULL in these columns.
 -- Preparation and Execution of Update Query: The code prepares and executes this query to update the values in the table.
   SET @sql_text = '
     UPDATE doc_survey 
