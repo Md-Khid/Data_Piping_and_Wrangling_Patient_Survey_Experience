@@ -89,29 +89,13 @@ suppressWarnings(data.frame <- dbGetQuery(con, "SELECT * FROM doc_survey"))
 # Close the database connection. This code signals the intention to close the connection to the database.
 dbDisconnect(con)
 ```
-2. After saving the "doc_survey" MySQL table as an R data.frame, it is important to inspect the structure of the retrieved data table. This step enables the project to gain an understanding of the characteristics of the data stored in the R environment. It is noted that all the variables stored in the data are integers. Therefore, the project can proceed to create a Simple Linear Regression model based on the doc_survey data in R.
+2. After saving the "doc_survey" MySQL table as an R data.frame, the project will inspect the structure of the retrieved data table. This enables the project to gain an understanding of the characteristics of the data stored in the R environment. It is noted that all the variables stored in the data are integers. Therefore, the project can proceed to create a Simple Linear Regression model based on the doc_survey data in R.
 
-```
-# Check the structure of the retrieved data table. This code is used to examine the structure of the data table that has been retrieved.
-str(data.frame)
-```
 <img width="529" alt="4" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/22d7a2c1-7d71-4446-a044-e9aa1d42cec9">
 
-3. In this R code, a linear regression analysis is conducted on a dataset with the aim of examining the relationship between the dependent variable "overall_sat" and all other columns treated as independent variables.
+3. A linear regression analysis is conducted on a dataset with the aim of examining the relationship between the dependent variable "overall_sat" and all other columns treated as independent variables.
 
-```
-# A linear regression model (model) is created using the "lm" function, which regresses the "overall_sat" variable against all other columns in the dataset (data.frame).
-# The model's purpose is to elucidate how variations in the independent variables affect "overall_sat".
-
-model1 <- lm(overall_sat ~ ., data = data.frame)
-
-```
 4. The results of the linear regression model are summarised using the "summary" function. The summary output reveals an R-squared value of 0.8071. This value indicates that around 80.71% of the variability in "overall_sat" can be attributed to the independent variables. This suggests that the model accounts for about 80.71% of the variability in "overall_sat," leaving roughly 19.29% of the variability unexplained. The unexplained variability may be due to unconsidered factors or random variation. Additionally, it is noted that the "age_bracket" and "sex" variables have high p-values (0.5970 and 0.7646, respectively), suggesting that they are not statistically significant in explaining the variation in "overall_sat". Consequently, it might be advantageous to contemplate the removal of "age_bracket" and "sex" to simplify the model and enhance its interpretability.
-
-```
-summary(model1)
-
-```
 
 <img width="527" alt="5" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/0efb94aa-f4ff-443a-9760-67599106388c">
 
