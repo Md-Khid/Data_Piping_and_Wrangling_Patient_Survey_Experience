@@ -100,119 +100,22 @@ dbDisconnect(con)
 <img width="527" alt="5" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/0efb94aa-f4ff-443a-9760-67599106388c">
 
 5. Another simplified linear regression model (model2) is fitted without the "age_bracket" and "sex" variables. This streamlined model maintains the same coefficient of determination (R-squared) and the Adjusted R-squared as the initial model. While the values for these statistical measures in the second regression model remain consistent as in the first, this approach effectively simplifies the regression model by utilising fewer variables to predict 'overall_sat', thus exemplifying the principle of parsimony.
-```
-# Fit another linear regression model with 'overall_sat' as the dependent variable and all other columns as independent variables
-model2 <- lm(overall_sat ~ . - age_bracket - sex, data = data.frame)
-```
-```
-# Summarise the simplified linear regression model
-summary(model2)
-```
+
 <img width="535" alt="6" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/e64f326f-2269-4fa9-a4ca-1fb99b06f3d3">
 
-6. Additionally, it is  good practice to examine multicollinearity in a regression model. Multicollinearity arises when the independent variables within a regression model exhibit strong correlations with one another potentially causing complications in model interpretation and influencing the dependability of the estimated coefficients. The results indicate that there is a moderate level of multicollinearity and may not necessarily cause severe problems to the model. 
-
-```
-# In this line of code, the "car" package is loaded, offering a comprehensive array of functions and datasets tailored for statistical analyses, with a particular focus on regression and various other model types.
-library(car)
-
-# In this line of code, the Variance Inflation Factor (VIF) is computed for the independent variables within the "model2."
-vif_model2 <- vif(model2)
-
-# This line prints the VIF values to the console using the "print" function.
-# Based on the results, the independent variables used in "model2" contained Variance Inflation Factor (VIF) values less than 10. 
-print(vif_model2)
-```
+6. Additionally, the project will check for multicollinearity in a regression model. Multicollinearity arises when the independent variables within a regression model exhibit strong correlations with one another potentially causing complications in model interpretation and influencing the dependability of the estimated coefficients. The results indicate that there is a moderate level of multicollinearity and may not necessarily cause severe problems to the model. 
 
 <img width="500" alt="Capture" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_Patient_Survey_Experience/assets/160820522/ee5bf25b-2219-4dfb-b5f0-8f02fab1925d">
 
 7. To gain a deeper understanding of the model, the project will print out the regression formula. This formula can be utilised to evaluate patient overall satisfaction scores based on future survey data.
 
-```
-#  This code illustrates the process of fitting and evaluating a linear regression model with the goal of understanding and potentially simplifying the relationship between the dependent variable "overall_sat" and the independent variables.
-cat(paste("overall_sat =", round(coef(model2)[1], 4), "+", paste(names(coef(model2))[-1], "*", round(coef(model2)[-1], 4), collapse = " + ")))
-```
 <img width="527" alt="8" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/17fb670d-b498-4dcd-8c6d-598752560ed1">
 
 8. To create a performance-impact chart using the basic R visualisation functions: plot(), points(), text(), axis() and abline(), a data table should be generated for storing the coefficients of model2 and the means of its variables.
    
-```
-# Here, a data frame named "data_table" is created to store the intended information and display it in a tabular format.
-data_table <- data.frame(
-
-  # In this line, the "Variable" column in the data frame is populated with the names of the variables from the "model2" coefficients.
-  # The coef(model2) function returns the coefficients of the linear regression model. names(coef(model2))[-1] is used to exclude the first element, which is typically the intercept.
-  Variable = names(coef(model2))[-1],
-  
-  # The "Mean_Value" column is filled with the mean values of the variables.
-  # The sapply function is used to apply a function to each variable name (excluding the intercept) in "model2".
-  # For each variable, it calculates the mean value using the mean() function.
-  # The data.frame[[var_name]] extracts the specific variable from the "doc_survey" data frame and na.rm = TRUE ensures that any missing values are ignored in the mean calculation.
-  Mean_Value = sapply(names(coef(model2))[-1], function(var_name) {
-    mean(data.frame[[var_name]], na.rm = TRUE)
-  }),
-  
-  # The "Coefficient" column is populated with the coefficients of the variables from "model2," excluding the intercept.
-  # This is achieved using coef(model2)[-1].
-  Coefficient = coef(model2)[-1]  
-)
-
-# This visually inspect and explore the information in tabular form, this  code prints the "data_table" to the console displaying the contents of the data frame which includes the variable names, mean values and coefficients.
-print(data_table)
-```
 <img width="579" alt="9" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/3ffc9480-cbd6-4060-8072-aea307eb3ebf">
 
-
-9. After storing the model2 variables' coefficients and means, the following codes will be executed to create the performance impact chart.
-```
-# In this line of the code, the mean of the "Mean_Value" column in the "data_table" is calculated, and the result is stored in the variable "mean_mean_value.
-mean_mean_value <- mean(data_table$Mean_Value)
-```
-```
-# In this line of the code, the mean of the "Coefficient" column in the "data_table" is calculated and saved in the variable "mean_coefficient."
-mean_coefficient <- mean(data_table$Coefficient)
-```
-```
-# In this line of the code, a scatter plot is created using data from the "data_table".
-# The x-axis represents "Coefficient * 100" and the y-axis represents "Mean_Value".
-# The "type = 'n'" argument specifies an empty plot with no data points initially.
-# The "xlim" and "ylim" arguments set the limits for the x and y axes while "xlab" and "ylab" label the x and y axes, and "main" provides a title for the plot.
-
-plot(data_table$Coefficient * 100, data_table$Mean_Value, type = "n", xlim = c(-10, 40),
-     ylim = c(2, 5), xlab = "Satisfaction Impact (%)", ylab = "Average Performance Rating",
-     main = "Patient Satisfaction and Performance Metrics")
-
-# In this line of the code, a data frame named "offsets" is created.  It contains three columns: "Variable," "x_offset," and "y_offset".
-# "Variable" lists category names, "x_offset" stores customized x-coordinate offsets and "y_offset" stores customized y-coordinate offsets for each category.
-
-offsets <- data.frame(
-  Variable = c("respectful", "seems_competent", "emphasises_well", "listens_well", "explains_and_updates_well", "ward_type"),
-  x_offset = c(0.5, 0.5, -0.5, -0.5, 0.5, -0.5), 
-  y_offset = c(0.1, 0.1, -0.1, -0.1, 0.1, -0.1) 
-)
-
-# In this line of the code, the "offsets" data frame is merged with the "data_table" based on the common column "Variable".
-# This operation effectively adds the "x_offset" and "y_offset" values to the "data_table."
-
-data_table <- merge(data_table, offsets, by = "Variable")
-
-# In this block of code, operations are performed within the context of the "data_table" data frame. The "points" function adds data points to the scatter plot.
-# The x and y coordinates are determined by "Coefficient * 100" and "Mean_Value" respectively.
-# The color and shape of the points are set based on the "Variable" column, with red points used for "ward_type" and black points for other categories.
-# The "text" function adds text labels to the data points with customized offsets.
-
-with(data_table, {
-  points(Coefficient * 100, Mean_Value, col = ifelse(Variable == "ward_type", "red", "black"), pch = 21, bg = ifelse(Variable == "ward_type", "red", "black"))
-  text(Coefficient * 100 + x_offset, Mean_Value + y_offset, labels = Variable)
-})
-
-# In this line of the code, horizontal and vertical dashed lines are added to the plot.
-# The horizontal line is drawn at the level of "mean_mean_value" on the y-axis representing the mean of the "Mean_Value" column.
-# The line is colored red and has a dashed pattern specified by "lty = 2".
-# The vertical line is drawn at a position calculated from "mean_coefficient" multiplied by 100 on the x-axis. This line is also coloured red and has a dashed pattern.
-
-abline(h = mean_mean_value, v = mean_coefficient * 100, col = "red", lty = 2)
-```
+9. After storing the model2 variables' coefficients and means, a performance impact chart will be produced.
 
 ![Patient and Satisfaction Performance Metrics](https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/56a0f74c-81bd-4556-83d1-31cfcd02273b)
 
