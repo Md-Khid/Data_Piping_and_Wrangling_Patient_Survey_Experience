@@ -1,12 +1,12 @@
 # Project Overview
 
 ## Introduction
-This project aims to demonstrate the transferring of data between Python, SQL and R for proficient data preparation, including merging data sets. It focuses on cleansing and structuring data related to inpatient ward experiences with healthcare providers, showcasing how these tools can be effectively employed to extract valuable insights from the collected survey data. Additionally, it will exhibit the creation of a simple Linear Model to predict patients' overall experience and the design of a performance-impact chart using basic R functions.
+This project aims to demonstrate the transferring of data between Python, SQL and R for proficient data preparation including merging data sets. It focuses on cleansing and structuring data related to inpatient ward experiences with healthcare providers showcasing how these tools can be effectively employed to extract valuable insights from the collected survey data. Additionally, it will exhibit the creation of a simple Linear Model to predict patients' overall experience and the design of a performance-impact chart using basic R functions.
 
 ## Dataset Information
 
 ### Data Variables
-The survey dataset for the entire year is stored in twelve separate Microsoft Excel documents, one for each calendar month. The significant part of the survey focuses on the experiences of warded patients with their doctors, including aspects such as respect, competency, empathy and listening skills. [Dataset](https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/tree/main/survey)
+The survey dataset for the entire year is stored in twelve separate Microsoft Excel documents one for each calendar month. The significant part of the survey focuses on the experiences of warded patients with their doctors including aspects such as respect, competency, empathy and listening skills. [Dataset](https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/tree/main/survey)
       
 This project will utilise:
 
@@ -68,7 +68,7 @@ Following the execution of the MySQL query, the "doc_survey" table comprising 17
 
 ## Uploading "doc_survey" data from MySQL to R
 
-1. To read the "doc_survey" MySQL table and save it as an R data.frame, the following code must be executed in an R environment.
+1. To read the "doc_survey" MySQL table and save it as an R data.frame, the following code will be executed in an R environment.
 
 ```
 # Set the working directory 
@@ -111,11 +111,7 @@ dbDisconnect(con)
 
 <img width="527" alt="8" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/17fb670d-b498-4dcd-8c6d-598752560ed1">
 
-8. To create a performance-impact chart using the basic R visualisation functions: plot(), points(), text(), axis() and abline(), a data table should be generated for storing the coefficients of model2 and the means of its variables.
-   
-<img width="579" alt="9" src="https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/3ffc9480-cbd6-4060-8072-aea307eb3ebf">
-
-9. After storing the model2 variables' coefficients and means, a performance impact chart will be produced.
+8. Generate a Performance-impact chart using the basic R visualisation functions: plot(), points(), text(), axis() and abline().
 
 ![Patient and Satisfaction Performance Metrics](https://github.com/Md-Khid/Data_Piping_and_Wrangling_for_Patient_Survey_Experience/assets/160820522/56a0f74c-81bd-4556-83d1-31cfcd02273b)
 
@@ -125,13 +121,13 @@ Based on the performance metrics chart created, it is recommended that the manag
 
 Patient Comfort: The category of the ward assigned to a patient can significantly impact their comfort levels. This includes factors such as the level of privacy provided, ambient noise and the overall ward environment. In cases where patients find their assigned wards uncomfortable, there is a likelihood of lower satisfaction scores.
 
-Quality of Care: The care provided to patients may vary depending on the ward category. For example, in a shared ward, nurses may have limited time available for individual patient care compared to a private ward. This, in turn, could influence the patient's perception of the care received.
+Quality of Care: The care provided to patients may vary depending on the ward category. For example, in a shared ward, nurses may have limited time available for individual patient care compared to a private ward. This in turn, could influence the patient's perception of the care received.
 
-Perceived Value: Patients often associate their ward category with the perceived value of their investment. If they find themselves in a ward they consider of lower quality, they may perceive that they are not receiving good value for their expenditure, potentially affecting their satisfaction.
+Perceived Value: Patients often associate their ward category with the perceived value of their investment. If they find themselves in a ward they consider of lower quality, they may perceive that they are not receiving good value for their expenditure. Thereby, potentially affecting their satisfaction.
 
 ## Conclusion
 
-In summary, this project exemplifies the effective utilisation of Python, SQL and R platforms in managing and analysing healthcare data to derive actionable insights. These platforms serve as powerful tools enabling analysts to adeptly handle extensive datasets and uncover significant patterns crucial for informed decision-making. Together, Python, SQL and R constitute an important toolkit for healthcare analytics, with each platform contributing its unique strengths to the data analysis workflow. Python manages data preprocessing and modelling tasks, SQL oversees data storage and retrieval from databases while R conducts advanced statistical analysis and visualisation. By harnessing the complementary features of these platforms, analysts can efficiently extract insights from data, inform evidence-based decision-making and drive continuous improvement in patient care and operational efficiency.
+In summary, this project exemplifies the effective utilisation of Python, SQL and R platforms in managing and analysing healthcare data to derive actionable insights. These platforms serve as powerful tools enabling analysts to adeptly handle extensive datasets and uncover significant patterns crucial for informed decision-making. Together, Python, SQL and R constitute an important toolkit for healthcare analytics with each platform contributing its unique strengths to the data analysis workflow. Python manages data preprocessing and modelling tasks, SQL oversees data storage and retrieval from databases while R conducts advanced statistical analysis and visualisation. By harnessing the complementary features of these platforms, analysts can efficiently extract insights from data, inform evidence-based decision-making and drive continuous improvement in patient care and operational efficiency.
 
 
 
